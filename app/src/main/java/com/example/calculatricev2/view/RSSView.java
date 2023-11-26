@@ -22,9 +22,15 @@ public class RSSView extends AppCompatActivity {
         setContentView(R.layout.activity_fluxrss);
     }
 
-    RSSView(){
+    public RSSView(){
         _RSSPresenter = new RSSPresenter();
         _RSSPresenter.setView(this);
+    }
+
+    public void previousItem(View view) {
+    }
+
+    public void nextItem(View view) {
     }
 }
 

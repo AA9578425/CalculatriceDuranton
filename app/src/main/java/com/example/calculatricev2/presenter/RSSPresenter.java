@@ -9,6 +9,9 @@ public class RSSPresenter {
 
     public RSSPresenter(){
         _RSSModel = new RSSModel();
+
+        _RSSModel.setUrl("https://www.lemonde.fr/international/rss_full.xml");
+        _RSSModel.processFeed();
     }
 
     public void setView(RSSView rssView) {
