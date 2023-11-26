@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.calculatricev2.view.CalculatorView;
+import com.example.calculatricev2.view.RSSView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,11 +18,19 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Button start = findViewById(R.id.start);
+        Button startCalculator = findViewById(R.id.calculatrice);
 
-        start.setOnClickListener(event -> {
+        startCalculator.setOnClickListener(event -> {
             Intent intent = new Intent(this, CalculatorView.class);
             startActivity(intent);
         });
+
+        Button startRSS = findViewById(R.id.fluxRSS);
+
+        startRSS.setOnClickListener(event -> {
+            Intent intent = new Intent(this, RSSView.class);
+            startActivity(intent);
+        });
+
     }
 }

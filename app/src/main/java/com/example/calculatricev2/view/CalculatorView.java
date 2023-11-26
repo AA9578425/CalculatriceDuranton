@@ -1,5 +1,8 @@
 package com.example.calculatricev2.view;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,13 +18,16 @@ import com.example.calculatricev2.presenter.CalculatorPresenter;
 
 public class CalculatorView extends AppCompatActivity {
 
-    private TextView result;
+    private TextView _result;
+    private GradientDrawable _border;
 
-    private ScrollView historyScrollView;
-    private LinearLayout historyLayout;
+    private Button _equalButton;
 
-    private TableLayout defaultOperations;
-    private TableLayout advancedOperations;
+    private ScrollView _historyScrollView;
+    private LinearLayout _historyLayout;
+
+    private TableLayout _defaultOperations;
+    private TableLayout _advancedOperations;
 
     private final CalculatorPresenter _calculatorPresenter;
 
@@ -36,20 +42,28 @@ public class CalculatorView extends AppCompatActivity {
 
         setContentView(R.layout.activity_calculatrice);
 
-        historyScrollView = findViewById(R.id.historyScrollView);
-        historyLayout = findViewById(R.id.historyLayout);
-        defaultOperations = findViewById(R.id.defaultOperations);
-        advancedOperations = findViewById(R.id.advancedOperations);
+        _historyScrollView = findViewById(R.id.historyScrollView);
+        _historyLayout = findViewById(R.id.historyLayout);
+        _defaultOperations = findViewById(R.id.defaultOperations);
+        _advancedOperations = findViewById(R.id.advancedOperations);
+        _equalButton = findViewById(R.id.buttonEqual);
 
-        result = findViewById(R.id.result);
-        result.setOnClickListener(event -> setContentView(R.layout.activity_calculatrice));
+        _result = findViewById(R.id.result);
+        _result.setOnClickListener(event -> setContentView(R.layout.activity_calculatrice));
 
-        defaultOperations.setVisibility(View.VISIBLE);
-        advancedOperations.setVisibility(View.GONE);
+        _defaultOperations.setVisibility(View.VISIBLE);
+        _advancedOperations.setVisibility(View.GONE);
+
+        _border = new GradientDrawable();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            _border.setPadding(15,5,15,5);
+        }
+
+        _equalButton.setEnabled(false);
     }
 
     public void showValue(String value) {
-        result.setText(value);
+        _result.setText(value);
     }
 
     public void nextCharacter(View view) {
@@ -58,31 +72,57 @@ public class CalculatorView extends AppCompatActivity {
 
     public void calcul(View view){
         _calculatorPresenter.calcul();
+        _equalButton.setEnabled(false);
     }
 
     public void addToHistory(String text){
         TextView newTextView = new TextView(this);
         newTextView.setText(text);
 
-        historyLayout.addView(newTextView);
+        _historyLayout.addView(newTextView);
 
-        historyScrollView.fullScroll(View.FOCUS_DOWN);
+        _historyScrollView.fullScroll(View.FOCUS_DOWN);
     }
 
     public void clear(View view) {
         _calculatorPresenter.clear();
         showValue("");
+        setValidResult();
+        _equalButton.setEnabled(false);
+
     }
 
     public void switchPane(View view){
-        if(defaultOperations.getVisibility() == View.VISIBLE) {
+        if(_defaultOperations.getVisibility() == View.VISIBLE) {
             System.out.println("Advanced");
-            defaultOperations.setVisibility(View.GONE);
-            advancedOperations.setVisibility(View.VISIBLE);
+            _defaultOperations.setVisibility(View.GONE);
+            _advancedOperations.setVisibility(View.VISIBLE);
         }else{
             System.out.println("Default");
-            defaultOperations.setVisibility(View.VISIBLE);
-            advancedOperations.setVisibility(View.GONE);
+            _defaultOperations.setVisibility(View.VISIBLE);
+            _advancedOperations.setVisibility(View.GONE);
         }
+    }
+
+    public void removeCharacter(View view) {
+        _calculatorPresenter.removeCharacter();
+    }
+
+    public void doubleBracket(View view) {
+        _calculatorPresenter.doubleBracket();
+    }
+
+    public void setInvalidResult(){
+        System.out.println("Invalid");
+        _border.setStroke(7, Color.RED);
+        _result.setBackground(_border);
+        _equalButton.setEnabled(false);
+    }
+
+    public void setValidResult() {
+        System.out.println("Valid");
+        _border.setStroke(0, Color.RED);
+        _result.setBackground(_border);
+        _equalButton.setEnabled(true);
     }
 }

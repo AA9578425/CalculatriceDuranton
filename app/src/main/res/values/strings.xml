@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CalculatriceV2</string>
+    <string name="image_precedente">Image précédente</string>
+    <string name="image_suivante">Image suivante</string>
+    <string name="test_image_title">test imane title</string>
+    <string name="test_image_date">test Image Date</string>
+    <string name="description_image">Description Image</string>
+    <string name="test_image_description">Test Image Description</string>
 </resources>

@@ -32,13 +32,39 @@
             android:layout_height="match_parent">
 
             <Button
+                android:id="@+id/buttonDoubleBrac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:onClick="doubleBracket"
+                android:text="()"
+                android:textSize="20sp" />
+
+            <Button
                 android:id="@+id/buttonSwitch"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF5144"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="#E91E63"
                 android:onClick="switchPane"
-                android:text="S"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="More"
                 android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonRemove"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:backgroundTint="#FF5144"
+                android:onClick="removeCharacter"
+                android:textSize="20sp"
+                android:paddingStart="30dp"
+                app:icon="@drawable/arrow" />
         </TableRow>
     </TableLayout>
 
@@ -57,25 +83,25 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/buttonOpenBrac"
+                android:id="@+id/buttonPow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="nextCharacter"
-                android:tag="("
-                android:text="("
+                android:tag="^"
+                android:text="^"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/buttonCloseBrac"
+                android:id="@+id/buttonMod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="nextCharacter"
-                android:tag=")"
-                android:text=")"
+                android:tag="%"
+                android:text="%"
                 android:textSize="20sp" />
 
             <Button
@@ -185,17 +211,6 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/buttonPow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp"
-                android:onClick="nextCharacter"
-                android:tag="^"
-                android:text="^"
-                android:textSize="20sp" />
-
-            <Button
                 android:id="@+id/buttonSqrt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -207,13 +222,24 @@
                 android:textSize="20dp" />
 
             <Button
+                android:id="@+id/buttonLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:onClick="nextCharacter"
+                android:tag="log("
+                android:text="log"
+                android:textSize="20sp" />
+
+            <Button
                 android:id="@+id/buttonExp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="nextCharacter"
-                android:tag="e("
+                android:tag="exp("
                 android:text="e"
                 android:textSize="20sp" />
 
@@ -225,6 +251,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -386,7 +413,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/buttonEgal"
+                android:id="@+id/buttonEqual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
@@ -413,8 +440,8 @@
     <ScrollView
         android:id="@+id/historyScrollView"
         android:layout_width="wrap_content"
-        android:layout_height="198dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result">
