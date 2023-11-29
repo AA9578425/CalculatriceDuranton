@@ -3,6 +3,8 @@ package com.example.calculatricev2.model;
 import static android.provider.MediaStore.Images.Media.getBitmap;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.xml.sax.Attributes;
@@ -12,7 +14,9 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -49,6 +53,7 @@ public class RSSModel implements ContentHandler {
             InputStream inputStream = new URL(url).openStream();
             reader.parse(new InputSource(inputStream));
             image = getBitmap(imageURL);
+            System.out.println(image);
             numItemMax = numItem;
         } catch (Exception e) {
             Log.e("smb116rssview", "processFeed Exception" + e.getMessage());
@@ -138,9 +143,30 @@ public class RSSModel implements ContentHandler {
 
     }
     public Bitmap getBitmap(String imageURL) {
-        // Cette méthode prend une URL en paramètre et retourne un objet Bitmap.
-        // Vous devez implémenter le code pour récupérer l'image à partir de l'URL.
-        // Assurez-vous de faire cela de manière asynchrone pour ne pas bloquer le thread principal.
-        return null; // Remplacez null par le code réel pour récupérer l'image.
+        try {
+            // Utilisez AsyncTask pour effectuer l'opération de réseau de manière asynchrone
+            return new DownloadImageTask().execute(imageURL).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String imageURL = urls[0];
+            try {
+                URL url = new URL(imageURL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                return BitmapFactory.decodeStream(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
     }
 }
