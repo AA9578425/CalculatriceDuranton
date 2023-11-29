@@ -29,16 +29,14 @@ public class CalculatorView extends AppCompatActivity {
     private TableLayout _defaultOperations;
     private TableLayout _advancedOperations;
 
-    private final CalculatorPresenter _calculatorPresenter;
-
-    public CalculatorView(){
-        _calculatorPresenter = new CalculatorPresenter();
-        _calculatorPresenter.setView(this);
-    }
-
+    private CalculatorPresenter _calculatorPresenter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        _calculatorPresenter = new CalculatorPresenter();
+        _calculatorPresenter.setView(this);
+
 
         setContentView(R.layout.activity_calculatrice);
 

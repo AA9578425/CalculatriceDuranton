@@ -1,28 +1,30 @@
 package com.example.calculatricev2.model;
 
-import static android.provider.MediaStore.Images.Media.getBitmap;
-
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
-public class RSSModel implements ContentHandler {
-    private String url = null;// l'URL du flux RSS à parser
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+public class RSSModel extends DefaultHandler {
+    private Context context;
+    private String _url = "https://www.lemonde.fr/rss/une.xml";// l'URL du flux RSS à parser
     // Ensemble de drapeau permettant de savoir où en est le parseur dans le flux XML
     private boolean inTitle = false;
     private boolean inDescription = false;
@@ -39,50 +41,32 @@ public class RSSModel implements ContentHandler {
     private int numItemMax = -1; // Le nombre total d’items dans le flux RSS
 
     public void setUrl(String url) {
-        this.url = url;
+        _url = url;
+    }
+    public void setContext(Context context){
+        this.context = context;
     }
 
-
     public void processFeed() {
+        System.out.println("A");
+        StringRequest stringRequest2 = new StringRequest(Request.Method.GET, _url,
+                response -> {
+                    System.out.println("Réponse : " + response);
+                },
+                error -> {
+                    System.out.println("Erreur : " + error.toString());
+                });
+        System.out.println("B");
+        Volley.newRequestQueue(context).add(stringRequest2);
+        System.out.println("C");
+        /*
         try {
-            numItem = 0;
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            XMLReader reader = parser.getXMLReader();
-            reader.setContentHandler(this);
-            InputStream inputStream = new URL(url).openStream();
-            reader.parse(new InputSource(inputStream));
             image = getBitmap(imageURL);
             System.out.println(image);
             numItemMax = numItem;
         } catch (Exception e) {
             Log.e("smb116rssview", "processFeed Exception" + e.getMessage());
-        }
-    }
-
-    @Override
-    public void setDocumentLocator(Locator locator) {
-
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void startPrefixMapping(String prefix, String uri) throws SAXException {
-
-    }
-
-    @Override
-    public void endPrefixMapping(String prefix) throws SAXException {
-
+        }*/
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -110,11 +94,6 @@ public class RSSModel implements ContentHandler {
         }
     }
 
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-
-    }
-
     public void characters(char ch[], int start, int length) {
         // Cette méthode est appelée lorsque des caractères sont présents à l'intérieur d'un élément.
         System.out.println("Characters");
@@ -128,20 +107,7 @@ public class RSSModel implements ContentHandler {
         }
     }
 
-    @Override
-    public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
 
-    }
-
-    @Override
-    public void processingInstruction(String target, String data) throws SAXException {
-
-    }
-
-    @Override
-    public void skippedEntity(String name) throws SAXException {
-
-    }
     public Bitmap getBitmap(String imageURL) {
         try {
             // Utilisez AsyncTask pour effectuer l'opération de réseau de manière asynchrone
@@ -169,4 +135,57 @@ public class RSSModel implements ContentHandler {
             }
         }
     }
+
+
+
+/*
+    private static RssReader instance;
+    private RequestQueue requestQueue;
+    private static Context context;
+
+    private RssReader(Context ctx) {
+        context = ctx;
+        requestQueue = getRequestQueue();
+    }
+
+    public static synchronized RssReader getInstance(Context context) {
+        if (instance == null) {
+            instance = new RssReader(context);
+        }
+        return instance;
+    }
+
+    public RequestQueue getRequestQueue() {
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        }
+        return requestQueue;
+    }
+
+    public <T> void addToRequestQueue(Request<T> req) {
+        getRequestQueue().add(req);
+    }
+
+    public void fetchRss(String url, final RssCallback callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        callback.onSuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        callback.onError(error.getMessage());
+                    }
+                });
+
+        addToRequestQueue(stringRequest);
+    }
+
+    public interface RssCallback {
+        void onSuccess(String rssResponse);
+        void onError(String errorMessage);
+    }*/
 }
