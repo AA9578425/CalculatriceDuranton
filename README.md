@@ -68,12 +68,12 @@ De plus, l'application ne lève jamais d'exception sans qu'elles soient récupé
 
 Problème d'internationalisation :
     
-    Lors de l'utilisation de la calculatrice, le résultat obtenu après le calcul est converti en String. Cependant bien que cela fonctionnait parfaitement sur le téléphone émulé dans Android Studio (Langue : US), une fois installé sur mon téléphone (Langue : FR), le résultat converti en String utilises alors des "," à la place des "." pour séparer les décimales. Or la bibliothèque Exp4j n'est pas adaptée au format avec des virgules, ce qui crée une erreur de format.
+Lors de l'utilisation de la calculatrice, le résultat obtenu après le calcul est converti en String. Cependant bien que cela fonctionnait parfaitement sur le téléphone émulé dans Android Studio (Langue : US), une fois installé sur mon téléphone (Langue : FR), le résultat converti en String utilises alors des "," à la place des "." pour séparer les décimales. Or la bibliothèque Exp4j n'est pas adaptée au format avec des virgules, ce qui crée une erreur de format.
 
-    J'ai donc utilisé une manière différente pour transformer les Doubles en String 
+J'ai donc utilisé une manière différente pour transformer les Doubles en String 
 
-    >    DecimalFormat decimalFormat = new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.US));
-    >    String troncatedResult = decimalFormat.format(result);
+>    DecimalFormat decimalFormat = new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.US));
+>    String troncatedResult = decimalFormat.format(result);
 
 
 # Flux RSS
