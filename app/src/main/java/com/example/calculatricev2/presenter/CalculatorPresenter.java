@@ -53,6 +53,12 @@ public class CalculatorPresenter {
         if(expression != null && expression.length() != 0){
             expression = expression.substring(0, expression.length() - 1);
             _calculatorView.showValueOnDisplay(expression);
+
+            if(_calculatorModel.checkResult(expression)) {
+                _calculatorView.setValidResult();
+            }else{
+                _calculatorView.setInvalidResult();
+            }
         }
     }
 
