@@ -36,6 +36,7 @@ public class RSSModel {
     private String _url = "https://www.lemonde.fr/rss/une.xml";
 
     private int numItem = 1; // Le numéro de l'item à extraire du flux RSS
+    private int _maxItem = 0;
 
     public void setUrl(String url) {
         _url = url;
@@ -46,7 +47,7 @@ public class RSSModel {
 
     public void processFeed() {
 
-        StringRequest stringRequest2 = new StringRequest(Request.Method.GET, _url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, _url,
                 response -> {
                     try {
 
@@ -58,16 +59,20 @@ public class RSSModel {
 
                         saxParser.parse(new InputSource(new StringReader(response)), handler);
 
+                        _maxItem = handler.getItemNumber();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 },
                 error -> System.out.println("Erreur : " + error.toString()));
 
-        Volley.newRequestQueue(context).add(stringRequest2);
+        Volley.newRequestQueue(context).add(stringRequest);
     }
     public void nextItem(){
-        numItem++;
+        if(numItem <= _maxItem) {
+            numItem++;
+        }
     }
 
     public void previousItem(){

@@ -3,6 +3,10 @@ package com.example.calculatricev2.presenter;
 import com.example.calculatricev2.model.CalculatorModel;
 import com.example.calculatricev2.view.CalculatorView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 public class CalculatorPresenter {
     CalculatorModel _calculatorModel;
     CalculatorView _calculatorView;
@@ -33,10 +37,16 @@ public class CalculatorPresenter {
     }
 
     public void executeCalculation() {
-        String troncatedResult = String.format("%.3f", _calculatorModel.executeCalculation(expression));
-        _calculatorView.addToHistory(expression + " = " + troncatedResult);
-        expression = troncatedResult;
-        _calculatorView.showValueOnDisplay(troncatedResult);
+        try {
+            Double result = _calculatorModel.executeCalculation(expression.replace(",","."));
+            DecimalFormat decimalFormat = new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.US));
+            String troncatedResult = decimalFormat.format(result);
+            _calculatorView.addToHistory(expression + " = " + troncatedResult);
+            expression = troncatedResult;
+            _calculatorView.showValueOnDisplay(troncatedResult);
+        }catch(IllegalArgumentException e) {
+            _calculatorView.showValueOnDisplay("Invalid value");
+        }
     }
 
     public void removeCharacter() {

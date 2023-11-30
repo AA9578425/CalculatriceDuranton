@@ -12,7 +12,7 @@
         android:layout_marginStart="168dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="168dp"
-        android:text="Calculatrice"
+        android:text="@string/calculatrice"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
@@ -38,7 +38,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="doubleBracket"
-                android:text="()"
+                android:text="@string/brackets"
                 android:textSize="20sp" />
 
             <Button
@@ -51,7 +51,7 @@
                 android:onClick="switchPane"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:text="More"
+                android:text="@string/more"
                 android:textSize="20sp" />
 
             <Button
@@ -64,6 +64,7 @@
                 android:onClick="removeCharacter"
                 android:textSize="20sp"
                 android:paddingStart="30dp"
+                android:paddingEnd="30dp"
                 app:icon="@drawable/arrow" />
         </TableRow>
     </TableLayout>
@@ -90,7 +91,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="^"
-                android:text="^"
+                android:text="@string/pow"
                 android:textSize="20sp" />
 
             <Button
@@ -101,7 +102,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="%"
-                android:text="%"
+                android:text="@string/mod"
                 android:textSize="20sp" />
 
             <Button
@@ -112,7 +113,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="-"
-                android:text="-"
+                android:text="@string/sous"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -129,7 +130,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="*"
-                android:text="*"
+                android:text="@string/mult"
                 android:textSize="20sp" />
 
             <Button
@@ -140,7 +141,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="/"
-                android:text="/"
+                android:text="@string/div"
                 android:textSize="20sp" />
 
             <Button
@@ -151,7 +152,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="+"
-                android:text="+"
+                android:text="@string/add"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -179,7 +180,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="sin("
-                android:text="sin"
+                android:text="@string/sin"
                 android:textSize="20sp" />
 
             <Button
@@ -190,7 +191,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="cos("
-                android:text="cos"
+                android:text="@string/cos"
                 android:textSize="20sp" />
 
             <Button
@@ -201,7 +202,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="tan("
-                android:text="tan"
+                android:text="@string/tan"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -218,8 +219,8 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="sqrt("
-                android:text="sqrt"
-                android:textSize="20dp" />
+                android:text="@string/sqrt"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/buttonLog"
@@ -229,7 +230,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="log("
-                android:text="log"
+                android:text="@string/log"
                 android:textSize="20sp" />
 
             <Button
@@ -240,7 +241,7 @@
                 android:layout_marginRight="7dp"
                 android:onClick="nextDigit"
                 android:tag="exp("
-                android:text="e"
+                android:text="@string/exp"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -273,7 +274,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="7"
-                android:text="7"
+                android:text="@string/_7"
                 android:textSize="20sp" />
 
             <Button
@@ -285,7 +286,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="8"
-                android:text="8"
+                android:text="@string/_8"
                 android:textSize="20sp" />
 
             <Button
@@ -297,7 +298,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="9"
-                android:text="9"
+                android:text="@string/_9"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -315,7 +316,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="4"
-                android:text="4"
+                android:text="@string/_4"
                 android:textSize="20sp" />
 
             <Button
@@ -327,7 +328,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="5"
-                android:text="5"
+                android:text="@string/_5"
                 android:textSize="20sp" />
 
             <Button
@@ -339,7 +340,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="6"
-                android:text="6"
+                android:text="@string/_6"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -357,7 +358,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="1"
-                android:text="1"
+                android:text="@string/_1"
                 android:textSize="20sp" />
 
             <Button
@@ -369,7 +370,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="2"
-                android:text="2"
+                android:text="@string/_2"
                 android:textSize="20sp" />
 
             <Button
@@ -381,7 +382,7 @@
                 android:backgroundTint="#3498db"
                 android:onClick="nextDigit"
                 android:tag="3"
-                android:text="3"
+                android:text="@string/_3"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -397,7 +398,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="clearResultDisplay"
-                android:text="AC"
+                android:text="@string/ac"
                 android:textSize="20sp" />
 
             <Button
@@ -408,8 +409,8 @@
                 android:layout_marginRight="7dp"
                 android:backgroundTint="#3491db"
                 android:onClick="nextDigit"
-                android:tag="("
-                android:text="0"
+                android:tag="0"
+                android:text="@string/_0"
                 android:textSize="20sp" />
 
             <Button
@@ -419,7 +420,7 @@
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="7dp"
                 android:onClick="executeCalculation"
-                android:text="="
+                android:text="@string/equal"
                 android:textSize="20sp" />
 
         </TableRow>
