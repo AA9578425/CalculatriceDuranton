@@ -16,12 +16,12 @@ public class CalculatorPresenter {
 
     public void nextCharacter(String character){
         expression += character;
-        if(_calculatorModel.checkResult(expression) == false){
-            _calculatorView.setInvalidResult();
-        }else{
+        if(_calculatorModel.checkResult(expression)) {
             _calculatorView.setValidResult();
+        }else{
+            _calculatorView.setInvalidResult();
         }
-        _calculatorView.showValue(expression);
+        _calculatorView.showValueOnDisplay(expression);
     }
 
     public void clear(){
@@ -32,17 +32,17 @@ public class CalculatorPresenter {
         _calculatorView = calculatorView;
     }
 
-    public void calcul() {
-        String troncatedResult = String.format("%.3f", _calculatorModel.calcul(expression));
+    public void executeCalculation() {
+        String troncatedResult = String.format("%.3f", _calculatorModel.executeCalculation(expression));
         _calculatorView.addToHistory(expression + " = " + troncatedResult);
         expression = troncatedResult;
-        _calculatorView.showValue(troncatedResult);
+        _calculatorView.showValueOnDisplay(troncatedResult);
     }
 
     public void removeCharacter() {
         if(expression != null && expression.length() != 0){
             expression = expression.substring(0, expression.length() - 1);
-            _calculatorView.showValue(expression);
+            _calculatorView.showValueOnDisplay(expression);
         }
     }
 

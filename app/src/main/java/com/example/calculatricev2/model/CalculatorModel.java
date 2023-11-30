@@ -5,10 +5,9 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class CalculatorModel {
     private Expression _expression;
-    public double calcul(String expressionString) {
+    public double executeCalculation(String expressionString) {
         if(_expression == null){
             _expression = new ExpressionBuilder(expressionString).build();
-
         }
         return _expression.evaluate();
     }

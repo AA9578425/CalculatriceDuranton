@@ -60,16 +60,16 @@ public class CalculatorView extends AppCompatActivity {
         _equalButton.setEnabled(false);
     }
 
-    public void showValue(String value) {
+    public void showValueOnDisplay(String value) {
         _result.setText(value);
     }
 
-    public void nextCharacter(View view) {
+    public void nextDigit(View view) {
         _calculatorPresenter.nextCharacter((String) view.getTag());
     }
 
-    public void calcul(View view){
-        _calculatorPresenter.calcul();
+    public void executeCalculation(View view){
+        _calculatorPresenter.executeCalculation();
         _equalButton.setEnabled(false);
     }
 
@@ -82,9 +82,9 @@ public class CalculatorView extends AppCompatActivity {
         _historyScrollView.fullScroll(View.FOCUS_DOWN);
     }
 
-    public void clear(View view) {
+    public void clearResultDisplay(View view) {
         _calculatorPresenter.clear();
-        showValue("");
+        showValueOnDisplay("");
         setValidResult();
         _equalButton.setEnabled(false);
 
@@ -92,11 +92,9 @@ public class CalculatorView extends AppCompatActivity {
 
     public void switchPane(View view){
         if(_defaultOperations.getVisibility() == View.VISIBLE) {
-            System.out.println("Advanced");
             _defaultOperations.setVisibility(View.GONE);
             _advancedOperations.setVisibility(View.VISIBLE);
         }else{
-            System.out.println("Default");
             _defaultOperations.setVisibility(View.VISIBLE);
             _advancedOperations.setVisibility(View.GONE);
         }
@@ -111,14 +109,12 @@ public class CalculatorView extends AppCompatActivity {
     }
 
     public void setInvalidResult(){
-        System.out.println("Invalid");
         _border.setStroke(7, Color.RED);
         _result.setBackground(_border);
         _equalButton.setEnabled(false);
     }
 
     public void setValidResult() {
-        System.out.println("Valid");
         _border.setStroke(0, Color.RED);
         _result.setBackground(_border);
         _equalButton.setEnabled(true);

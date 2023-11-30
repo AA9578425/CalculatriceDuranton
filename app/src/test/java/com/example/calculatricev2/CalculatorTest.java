@@ -14,11 +14,11 @@ public class CalculatorTest {
     }
     @Test
     public void testCalculFromStringToDouble() {
-        assertEquals(String.valueOf(_calculatorModel.calcul("2+2")), String.valueOf(2.0 + 2.0));
+        assertEquals(String.valueOf(_calculatorModel.executeCalculation("2+2")), String.valueOf(2.0 + 2.0));
     }
 
     @Test
     public void testCalculNotCorreclyFormated() {
-        assertThrows(IllegalArgumentException.class, () -> _calculatorModel.calcul("2+"));
+        assertThrows(IllegalArgumentException.class, () -> _calculatorModel.executeCalculation("2+"));
     }
 }
