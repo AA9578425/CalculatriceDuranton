@@ -12,10 +12,8 @@ public class RSSPresenter {
 
     public RSSPresenter(Context context){
         _RSSModel = new RSSModel();
-        _RSSModel.setUrl("https://zapier.com/engine/rss/17211843/ENSICAEN"); // https://www.lemonde.fr/rss/une.xml
         _RSSModel.setContext(context);
-        _RSSModel.processFeed();
-
+        setRSSFeed("");
     }
 
     public void setView(RSSView rssView) {
@@ -33,6 +31,23 @@ public class RSSPresenter {
 
     public void nextItem() {
         _RSSModel.nextItem();
+        _RSSModel.processFeed();
+    }
+
+    public void setRSSFeed(String rssFeedName) {
+        switch (rssFeedName){
+            case "Actualités":
+                _RSSModel.setUrl("https://www.lemonde.fr/rss/une.xml");
+                break;
+            case "International":
+                _RSSModel.setUrl("https://www.lemonde.fr/international/rss_full.xml");
+                break;
+            case "Société":
+                _RSSModel.setUrl("https://www.lemonde.fr/societe/rss_full.xml");
+                break;
+            default:
+                _RSSModel.setUrl("https://zapier.com/engine/rss/17211843/ENSICAEN");
+        }
         _RSSModel.processFeed();
     }
 }

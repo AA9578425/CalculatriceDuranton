@@ -4,6 +4,9 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -118,5 +121,22 @@ public class CalculatorView extends AppCompatActivity {
         _border.setStroke(0, Color.RED);
         _result.setBackground(_border);
         _equalButton.setEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.closeActivity) {
+            finish();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,26 +20,27 @@
 
     <Button
         android:id="@+id/calculatrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280sp"
+        android:layout_height="60sp"
         android:layout_marginTop="8dp"
         android:text="Calculatrice"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu"
         app:layout_constraintVertical_bias="0.19" />
 
     <Button
         android:id="@+id/fluxRSS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280sp"
+        android:layout_height="60sp"
         android:text="Flux RSS"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculatrice"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintVertical_bias="0.07999998" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

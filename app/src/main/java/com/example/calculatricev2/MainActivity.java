@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RSSView.class);
             startActivity(intent);
         });
-
     }
 
     public void resetDisplay(String title, String date, Bitmap image, String description) {
